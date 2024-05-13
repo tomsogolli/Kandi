@@ -59,12 +59,10 @@ def train_one_epoch(epoch_index):
         optimizer.step()
         # Save data
         running_loss += loss.item()
-        if i == 0 or i == 9:
-            last_loss = running_loss / (i+1) # loss per batch
-            print(" batch {} loss: {}".format(i + 1, last_loss))
-            running_loss = 0.
-    print("Training this epoch took", round(time()-start_t), "seconds")
-    return last_loss
+    avg_loss = running_loss / len(train_loader)
+    print("Training this epoch took", round(time.time()-start_t), "seconds")
+    print("Average loss per batch:", avg_cost)
+    return avg_loss
 
 learning_rate = 0.01
 # initialize neural net
