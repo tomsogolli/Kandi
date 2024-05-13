@@ -66,12 +66,10 @@ def train_one_epoch(epoch_index):
         optimizer.step()
         # Save data
         running_cost += cost.item()
-        if i == 0 or i == 9:
-            last_cost = running_cost / (i+1) # loss per batch
-            print(" batch {} cost: {}".format(i + 1, last_cost))
-            running_cost = 0.
+    avg_cost = running_cost / len(train_loader)
     print("Training this epoch took", round(time.time()-start_t), "seconds")
-    return last_cost
+    print("Average cost per batch:", avg_cost)
+    return avg_cost
 
 
 model = BayesianNeuralNetwork().to(device)
