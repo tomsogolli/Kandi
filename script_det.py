@@ -60,8 +60,8 @@ def train_one_epoch(epoch_index):
         # Save data
         running_loss += loss.item()
     avg_loss = running_loss / len(train_loader)
-    print("Training this epoch took", round(time.time()-start_t), "seconds")
-    print("Average loss per batch:", avg_cost)
+    print("Training this epoch took", round(time()-start_t), "seconds")
+    print("Average loss per batch:", avg_loss)
     return avg_loss
 
 learning_rate = 0.01
@@ -185,7 +185,9 @@ print("Win precent {}%".format(round((win_count/bs_test)*100, 2)))
 
 print("Increase after training", round((win_count/bs_test - no_train)*100, 2), "%")
 
-x_plot = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+x_plot = []
+for i in range(epochs):
+    x_plot.append(i+1)
 
 # xnew = np.linspace(1, 10, 300)  
 
